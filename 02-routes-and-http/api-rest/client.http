@@ -1,0 +1,32 @@
+@baseURL = http://localhost:3333
+@cookie = sessionId=948dcbf3-7d91-47cb-8dd6-edcced0edda4
+@transactionId = {{listTransactions.response.body.transactions[0].id}}
+
+# @name listTransactions
+GET {{baseURL}}/transactions
+cookie: {{cookie}}
+
+###
+
+# @name listOneTransaction
+GET {{baseURL}}/transactions/{{transactionId}}
+cookie: {{cookie}}
+
+###
+
+# @name getSummaryBySessionId
+GET {{baseURL}}/transactions/summary
+cookie: {{cookie}}
+
+###
+
+# @name createTransaction
+POST {{baseURL}}/transactions
+content-type: application/json
+cookie: {{cookie}}
+
+{
+    "title": "Primeira transação",
+    "amount": 1000,
+    "type": "credit"
+}
